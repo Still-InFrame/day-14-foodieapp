@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* Swap This — brand theme. Warm, fresh, food-forward. The product metaphor is
+   "upgrade": amber/coral = the thing you're holding now, green = the better swap. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-cream: #fbf7ef;
+  --color-cream-deep: #f4ecdd;
+  --color-ink: #1a2420;
+  --color-ink-soft: #51605a;
+
+  --color-brand: #1f9d57; /* fresh leafy green */
+  --color-brand-dark: #15793f;
+  --color-brand-tint: #e4f4e9;
+
+  --color-accent: #f4763b; /* warm coral — the "before" / CTA pop */
+  --color-accent-tint: #fde9df;
+
+  --color-grade-a: #1f9d57;
+  --color-grade-b: #7cb518;
+  --color-grade-c: #f2b705;
+  --color-grade-d: #f4763b;
+  --color-grade-e: #e23c3c;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: var(--color-cream);
+  --foreground: var(--color-ink);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Subtle texture for hero/marketing sections */
+.bg-grain {
+  background-image: radial-gradient(circle at 1px 1px, rgba(31, 157, 87, 0.08) 1px, transparent 0);
+  background-size: 22px 22px;
 }

@@ -41,7 +41,10 @@ fi
 # OpenAI/Anthropic sk- keys on test values): Supabase keys + URL, OpenAI/Anthropic
 # (sk-, sk-proj-, sk-ant-), Google, JWTs, AWS, Stripe, private keys.
 PATTERNS='sb_secret_[A-Za-z0-9]{16,}|sb_publishable_[A-Za-z0-9]{16,}|GOCSPX-[A-Za-z0-9_-]{10,}|eyJ[A-Za-z0-9_-]{18,}\.[A-Za-z0-9_-]{18,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|AKIA[0-9A-Z]{16}|[a-z0-9]{20}\.supabase\.co|SERVICE_ROLE|sk-[A-Za-z0-9_-]{24,}|sk_live_[A-Za-z0-9]{16,}'
-HITS="$(git grep --cached -nIE "$PATTERNS" 2>/dev/null || true)"
+# Exclude the scaffold's own helper scripts: they legitimately contain the
+# pattern STRINGS (e.g. the literal "SERVICE_ROLE" in $PATTERNS above), which
+# would otherwise self-flag. App/source/config files are all still scanned.
+HITS="$(git grep --cached -nIE "$PATTERNS" -- ':(exclude)publish.sh' ':(exclude)deploy.sh' ':(exclude)backup.sh' 2>/dev/null || true)"
 if [ -n "$HITS" ]; then
   echo "  [x] native scan flagged:"; echo "$HITS" | sed 's/^/      /'; FAIL=1
 fi
