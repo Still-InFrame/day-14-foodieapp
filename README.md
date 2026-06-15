@@ -1,5 +1,7 @@
 # Swap This
 
+**Live:** https://foodieapp.100dayaichallenge.com
+
 **Keep the cravings. Cut the junk.** Search any food, pick what you care about — calories, sugar, processing, salt, protein, or eco-impact — and Swap This finds a healthier version in the same category, sold where you live. Same taste, better stats.
 
 Built on the [Open Food Facts](https://world.openfoodfacts.org) database of 3M+ real products.
